@@ -7,7 +7,7 @@ build base env from alpin
 - build
     - docker build -t zgl/scrapy_dev:latest ./dev
 - start
-    - docker run -it --name dev zgl/scrapy_dev:latest
+    - docker run -it --link scrapyd:scrapyd --link splash:splash --name dev zgl/scrapy_dev:latest
     - docker start dev
 - stop
     - docker stop dev
@@ -17,7 +17,7 @@ build base env from alpin
 - build
     - docker build -t zgl/scrapyd:latest ./scrapyd
 - start
-    - docker run -d --name scrapyd -p6800:6800 zgl/scrapyd
+    - docker run -d --link splash:splash --name scrapyd -p6800:6800 zgl/scrapyd
     - docker start scrapyd
     - docker attach scrapyd
 - stop
