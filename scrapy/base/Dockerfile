@@ -1,9 +1,9 @@
 FROM alpine:latest
 MAINTAINER zhangguanglei <xian0617@gmail.com>
 
-ENV RUNTIME_PACKAGES ca-certificates python py-pip git curl libxslt libxml2 openssl
-ENV BUILD_PACKAGES build-base libxslt-dev libxml2-dev libffi-dev python-dev openssl-dev 
-RUN apk add --no-cache ${RUNTIME_PACKAGES} ${BUILD_PACKAGES} 
+ENV RUNTIME_PACKAGES ca-certificates python py-pip git curl libxslt libxml2 openssl mariadb-client
+ENV BUILD_PACKAGES build-base libxslt-dev libxml2-dev libffi-dev python-dev 
+RUN apk update && apk add ${RUNTIME_PACKAGES} ${BUILD_PACKAGES} 
 RUN mkdir -p ~/.pip/
 ADD ./pip.conf ~/.pip/
 #RUN pip install --upgrade pip && \
@@ -18,6 +18,9 @@ RUN pip install --upgrade pip && \
       scrapyd \
       scrapyd-client \
       scrapy-splash \
+      redis \
+      hiredis \
+      mysql-python \
       && rm -rf /root/.cache && \
   curl -sSL https://github.com/scrapy/scrapy/raw/master/extras/scrapy_bash_completion >> /root/.bashrc
   
