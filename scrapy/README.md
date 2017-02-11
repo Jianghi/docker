@@ -8,6 +8,7 @@ build base env from alpin
     - docker build -t zgl/scrapy_dev:latest ./dev
 - start
     - docker run -it --link scrapyd:scrapyd --link splash:splash --name dev zgl/scrapy_dev:latest
+    - docker run -it --link scrapyd:scrapyd --link splash:splash --name dev -v /home/zgl/git/scrapy/:/work/scray  zgl/scrapy_dev:latest
     - docker start dev
 - stop
     - docker stop dev
@@ -32,5 +33,6 @@ build base env from alpin
     需注意port映射到内网上
     - docker pull scrapinghub/splash
     - docker run -d -p 8050:8050 --name splash scrapinghub/splash
+    - docker run -d --name splash scrapinghub/splash
     - docker start splash
     - docker stop splash
